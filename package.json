@@ -1,0 +1,28 @@
+{
+  "name": "emojis",
+  "version": "1.0.0",
+  "description": "A simple app that generates a bunch of emojis that you can copy to your clipboard.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CubYard/emojis.git"
+  },
+  "keywords": [
+    "emoji",
+    "emojis",
+    "smileys"
+  ],
+  "author": "Abdur Jabbar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CubYard/emojis/issues"
+  },
+  "homepage": "https://github.com/CubYard/emojis#readme"
+}
