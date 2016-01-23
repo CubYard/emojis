@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>😂 😝 Emojis 😜 😋 - Easily copy emojis to your clipboard!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Easily copy emojis to your clipboard to paste in other sites!"></meta>
     <meta name="keywords" content="emojis, emoji, smileys, smileys, face icons, emoticons"></meta>
     <meta name="robots" content="index,follow"></meta>
@@ -17,7 +18,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         header, footer {
@@ -90,6 +91,7 @@
             transition: color 100ms;
             font-size: 3em;
             color: #4134E4;
+            max-width: 100%;
         }
 
         small {
@@ -105,6 +107,25 @@
 
         a {
             color: #37EE5F !important;
+        }
+
+        @media screen and (max-width: 960px) {
+            main {
+                width: 100%;
+                overflow-x: hidden;
+            }
+            .emoji .raw {
+                transform: scale(2);
+                font-size: 1em;
+                padding-bottom: 10px;
+            }
+            small {
+                padding: 0 10px;
+            }
+            .search {
+                width: 90%;
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -153,7 +174,7 @@
         var searchHelper = $('#search-helper')[0];
 
         $('.search').on('keyup', function() {
-            var searchText = $(this).val();
+            var searchText = $(this).val().toLowerCase();
             searchHelper.innerText = ".emoji:not([data-aliases*=" + searchText + "]){display: none;}";
         });
     </script>
