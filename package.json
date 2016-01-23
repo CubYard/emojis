@@ -4,11 +4,18 @@
   "description": "A simple app that generates a bunch of emojis that you can copy to your clipboard.",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.13.4"
+    "ejs": "^2.3.4",
+    "express": "^4.13.4",
+    "grunt-wiredep": "^2.0.0",
+    "load-grunt-tasks": "^3.4.0",
+    "wiredep": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node app.js",
+    "prestart": "npm run wiredep",
+    "wiredep": "node tasks/wiredep.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +30,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CubYard/emojis/issues"
+  },
+  "engines": {
+    "node": ">=5.4.0"
   },
   "homepage": "https://github.com/CubYard/emojis#readme"
 }

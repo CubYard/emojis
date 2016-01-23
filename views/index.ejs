@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>😂 😝 Emojis 😜 😋 - Easily copy emojis to your clipboard!</title>
+    <meta name="description" content="Easily copy emojis to your clipboard to paste in other sites!"></meta>
+    <meta name="keywords" content="emojis, emoji, smileys, smileys, face icons, emoticons"></meta>
+    <meta name="robots" content="index,follow"></meta>
+    <!-- bower:css -->
+    <link rel='stylesheet' href='../bower_components/toastr/toastr.css' />
+    <!-- endbower -->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            background-color: rgb(20, 20, 20);
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            height: 100vh;
+        }
+
+        header, footer {
+            overflow: hidden;
+            min-height: 80px;
+            background-color: #4134E4;
+            color: rgb(244, 244, 244);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            flex-grow: 1;
+            width: 960px;
+            margin: auto;
+            display: block;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: solid 1px grey;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            background-color: rgb(244, 244, 244);
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .search {
+            width: 50%;
+            height: 30px;
+            font-size: 1.5em;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .emojis {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .emoji {
+            width: 150px;
+            border-radius: 5px;
+            border: solid 1px grey;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin: 25px;
+            padding: 40px 0;
+            cursor: pointer;
+            box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 100ms;
+        }
+
+        .emoji:hover {
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .emoji:active {
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.4);
+            border-color: black;
+        }
+
+        .emoji:hover .raw {
+            opacity: 0.9;
+        }
+
+        .emoji .raw {
+            transition: color 100ms;
+            font-size: 3em;
+            color: #4134E4;
+        }
+
+        small {
+            display: block;
+            margin: 20px auto;
+        }
+
+        .instructions {
+            text-align: center;
+            margin: 0;
+            padding: 25px 0;
+        }
+
+        a {
+            color: #37EE5F !important;
+        }
+    </style>
+</head>
+<body class="container">
+    <header>
+        <div class="logo"></div>
+        <div class="site-name">
+            <h1>Emojis.io</h1>
+        </div>
+    </header>
+    <main>
+        <style id='search-helper'></style>
+        <h1 class='instructions'>Click on any emoji to copy it to your clipboard!</h1>
+        <input class="search" type="text" placeholder="or search for it! 😉" />
+        <small>Note: Some browsers don't support all the emojis so you'll see &#99999;</small>
+        <div class="emojis">
+            <% emojis.forEach(function(emoji){ %>
+                <div class="emoji" data-clipboard-text="<%- emoji.raw %>" data-aliases='<%- emoji.aliases.join(' ') %>' >
+                    <div class="raw"><%= emoji.raw %></div>
+                    <div class="aliases">
+                        <% emoji.aliases.slice(0, 3).forEach(function(alias) { %>
+                        <div class="alias"><%= alias %></div>
+                        <% }) %>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    <footer>
+        <div>This was made by <a href="https://github.com/arjabbar">Abdur Jabbar</a>.</div>
+    </footer>
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/toastr/toastr.js"></script>
+    <script src="../bower_components/prefixfree/prefixfree.min.js"></script>
+    <!-- endbower -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.js"></script>
+    <script>
+        var clipboard = new Clipboard('.emoji');
+        clipboard.on('success', function(e) {
+            toastr.info("Copied " + e.text + " to your clipboard!");
+        }).on('failure', function() {
+            toastr.error("😞 Looks like my app doesn't support your browser yet! You can still just highlight and copy the emojis just like they're regular text though. 😞");
+        });
+
+        var searchHelper = $('#search-helper')[0];
+
+        $('.search').on('keyup', function() {
+            var searchText = $(this).val();
+            searchHelper.innerText = ".emoji:not([data-aliases*=" + searchText + "]){display: none;}";
+        });
+    </script>
+</body>
+</html>
