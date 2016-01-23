@@ -1,7 +1,7 @@
 var emojis = require('./emojis.json');
 var express = require('express');
 var app = express();
-var port = process.env['EMOJIS_PORT'] || 8080;
+var port = process.env.PORT || 8080;
 
 app.set('view engine', 'ejs');
 
