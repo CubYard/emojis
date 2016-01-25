@@ -10,6 +10,7 @@ app.get('/', (request, response) => {
 });
 
 app.use('/bower_components', express.static(`${__dirname}/bower_components`));
+app.use('/fonts', express.static(`${__dirname}/fonts`));
 
 app.listen(port);
 
