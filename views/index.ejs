@@ -80,6 +80,11 @@
             font-family: "OpenSansEmoji";
         }
 
+        /*For mobile devices, let them use their default font.*/
+        .mobile.emojis {
+            font-family: unset;
+        }
+
         .emoji {
             width: 100px;
             height: 100px;
@@ -203,6 +208,14 @@
             var searchText = $(this).val().toLowerCase();
             searchHelper.innerText = ".emoji:not([data-aliases*=" + searchText + "]){display: none;}";
         });
+
+        if( navigator.userAgent.match(/Android/i) ||
+            navigator.userAgent.match(/webOS/i) ||
+            navigator.userAgent.match(/iPhone/i) ||
+            navigator.userAgent.match(/iPod/i)) {
+            $('.emojis').addClass('mobile');
+        }
+
     </script>
 </body>
 </html>
