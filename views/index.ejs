@@ -179,8 +179,8 @@
         <small>Note: Some emojis may not be supported on your computer, so they will show up as <span class="big">&#99999;.</span></small>
         <div class="emojis">
             <% emojis.forEach(function(emoji){ %>
-                <div class="emoji" data-clipboard-text="<%- emoji.raw %>" data-aliases='<%- emoji.aliases.join(' ') %>' >
-                    <div class="raw" title="<%= emoji.aliases[0] %>"><%= emoji.raw %></div>
+                <div class="emoji" data-clipboard-text="<%- emoji.raw %>" data-aliases='<%- emoji.aliases.join(' ').concat([emoji.raw]) %>' >
+                    <div class="raw" title="<%= emoji.aliases[0] || emoji.name %>"><%= emoji.raw %></div>
                 </div>
             <% }); %>
         </div>

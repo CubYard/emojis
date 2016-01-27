@@ -4,6 +4,7 @@
   "description": "A simple app that generates a bunch of emojis that you can copy to your clipboard.",
   "main": "app.js",
   "dependencies": {
+    "array-unique": "^0.2.1",
     "ejs": "^2.3.4",
     "express": "^4.13.4",
     "grunt-wiredep": "^2.0.0",
