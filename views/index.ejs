@@ -43,12 +43,15 @@
         header, footer {
             overflow: hidden;
             min-height: 80px;
-            background-color: #4134E4;
+            background-color: #3F51B5;
             color: rgb(244, 244, 244);
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .title-emoji {
+            font-size: 0.8em;
         }
 
         main {
@@ -71,6 +74,11 @@
             font-size: 1.5em;
             padding: 10px;
             text-align: center;
+            border-width: 0;
+            border-bottom-width: 2px;
+            border-color: black;
+            background-color: rgba(244, 244, 244, 0.8);
+            outline: none;
         }
 
         .emojis {
@@ -138,8 +146,7 @@
         .site-name a {
             color: rgb(244, 244, 244);
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 1px;
         }
 
         @media screen and (max-width: 960px) {
@@ -169,7 +176,7 @@
     <header>
         <div class="logo"></div>
         <div class="site-name">
-            <h1><a href="/">emojis.cubyard.com</a></h1>
+            <h1><a href="/">em<span class="title-emoji">😏</span>jis.cubyard.com</a></h1>
         </div>
     </header>
     <main>
@@ -179,7 +186,7 @@
         <small>Note: Some emojis may not be supported on your computer, so they will show up as <span class="big">&#99999;.</span></small>
         <div class="emojis">
             <% emojis.forEach(function(emoji){ %>
-                <div class="emoji" data-clipboard-text="<%- emoji.raw %>" data-aliases='<%- emoji.aliases.join(' ').concat([emoji.raw]) %>' >
+                <div class="emoji" data-clipboard-text="<%- emoji.raw %>" data-aliases='<%- getSearchTerms(emoji).join(' ') %>' >
                     <div class="raw" title="<%= emoji.aliases[0] || emoji.name %>"><%= emoji.raw %></div>
                 </div>
             <% }); %>
